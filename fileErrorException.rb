@@ -25,15 +25,20 @@ class LearnFileErrorExcep
 			word_for_find = gets
 			word_for_find = word_for_find.tr("\n","")
 			line_no = 1
+			flag = 0
 			readFile.each do |line|
 				word_no = 1
 				line.scan(/[\w']+/) do |word|                            # find a word in a line using reguler expression
   				if word_for_find == word
+						flag = 1
 						puts word << " is found in line " << line_no.to_s << " and word no is " << word_no.to_s
 					end
 				word_no += 1	
 				end
 				line_no += 1
+			end
+			if flag == 0
+				puts "oops! input data is not find."
 			end
 		else
 			puts "Unable to open file"
